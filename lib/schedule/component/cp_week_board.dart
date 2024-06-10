@@ -61,7 +61,7 @@ class _WeekBoardState extends State<WeekBoard> {
       height: 20, // 사각형의 세로 크기
       decoration: BoxDecoration(
         // Todo boxColor로 변경
-        color: Color(0xFFF0F0F0), // 내부 색상 설정
+        color: const Color(0xFFF0F0F0), // 내부 색상 설정
         borderRadius: BorderRadius.circular(4.0), // 둥근 테두리 반경 설정
         border: Border.all(
           color: Colors.black, // 테두리 색상
