@@ -19,7 +19,7 @@ class _WeekBoardState extends State<WeekBoard> {
           tableRowTitle[column],
           textAlign: TextAlign.center,
           style: const TextStyle(
-            fontSize: 20,
+            fontSize: 15,
           ),
         ),
       );
@@ -28,7 +28,8 @@ class _WeekBoardState extends State<WeekBoard> {
         alignment: Alignment.center,
         child: Text(
           tableColumnTitle[row - 1],
-          textAlign: TextAlign.end,
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 15),
         ),
       );
     } else {
@@ -54,18 +55,18 @@ class _WeekBoardState extends State<WeekBoard> {
     //     break;
     // }
 
-    return Container(
-      alignment: Alignment.center,
-      margin: const EdgeInsets.all(2),
-      width: 20, // 사각형의 가로 크기
-      height: 20, // 사각형의 세로 크기
-      decoration: BoxDecoration(
-        // Todo boxColor로 변경
-        color: const Color(0xFFF0F0F0), // 내부 색상 설정
-        borderRadius: BorderRadius.circular(4.0), // 둥근 테두리 반경 설정
-        border: Border.all(
-          color: Colors.black, // 테두리 색상
-          width: 2.0, // 테두리 두께
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 1.0),
+      child: Container(
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          // Todo boxColor로 변경
+          color: const Color(0xFFF0F0F0), // 내부 색상 설정
+          borderRadius: BorderRadius.circular(8.0), // 둥근 테두리 반경 설정
+          border: Border.all(
+            color: Colors.black, // 테두리 색상
+            width: 2.0, // 테두리 두께
+          ),
         ),
       ),
     );
@@ -73,24 +74,26 @@ class _WeekBoardState extends State<WeekBoard> {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 8,
-        mainAxisSpacing: 4.0,
-        crossAxisSpacing: 8.0,
-        childAspectRatio: 1.0,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 8,
+          mainAxisExtent: 35,
+          mainAxisSpacing: 3.0,
+        ),
+        itemCount: 56,
+        itemBuilder: (context, index) {
+          int row = index ~/ 8;
+          int column = index % 8;
+
+          print('row : $row, column : $column');
+
+          return buildTableItem(row, column);
+        },
       ),
-      itemCount: 56,
-      itemBuilder: (context, index) {
-        int row = index ~/ 8;
-        int column = index % 8;
-
-        print('row : $row, column : $column');
-
-        return buildTableItem(row, column);
-      },
     );
   }
 }
